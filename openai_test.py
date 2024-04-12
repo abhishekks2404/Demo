@@ -11,7 +11,7 @@ def get_query(Prompt):
   
     client = AzureOpenAI(
                 azure_endpoint = st.secrets["azure_endpoint"],
-                api_key = st.secrets["api_key"],
+                api_key = os.getenv("api_key"),
                 api_version = st.secrets["api_version"]
             )
     conversation1 = [{"role": "system", "content": f"""You are a assistant, just reply with details answer.
