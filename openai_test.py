@@ -103,62 +103,61 @@ def gpt_function(endpoint,api_key, ksb, ksb_desc, extra_instruction=''):
     return response.choices[0].message.content.strip()
 
 
-async def main():
-    if "openai_key" not in st.session_state:
-        st.session_state.openai_key = ""
 
-    if "endpoint" not in st.session_state:
-        st.session_state.endpoint = ""
+if "openai_key" not in st.session_state:
+    st.session_state.openai_key = ""
 
-    st.header("Generate Binary Statements")
+if "endpoint" not in st.session_state:
+    st.session_state.endpoint = ""
 
-    st.title("A step to Automate KSB binary statements")
+st.header("Generate Binary Statements")
 
-    openai_api_key = st.text_input("Enter your Azure OpenAI keys", type="password")
-    if openai_api_key:
-        st.session_state.openai_key = openai_api_key
+st.title("A step to Automate KSB binary statements")
 
-    openai_endpoint = st.text_input("Enter your Azure OpenAI endpoint", type="password")
-    if openai_endpoint:
-        st.session_state.endpoint = openai_endpoint
+openai_api_key = st.text_input("Enter your Azure OpenAI keys", type="password")
+if openai_api_key:
+    st.session_state.openai_key = openai_api_key
 
-    description = """
-    #### About the App
-    ###### This app generates binary statements based on the KSB description provided.
-    """
-    st.markdown(description, unsafe_allow_html=True)
+openai_endpoint = st.text_input("Enter your Azure OpenAI endpoint", type="password")
+if openai_endpoint:
+    st.session_state.endpoint = openai_endpoint
 
-    # st.sidebar.title("Azure OpenAI API Key")
-    # openai_api_key = st.sidebar.text_input("Enter your Azure OpenAI API Key", type="password")
+description = """
+#### About the App
+###### This app generates binary statements based on the KSB description provided.
+"""
+st.markdown(description, unsafe_allow_html=True)
 
-
-    # if 'openai_client' not in st.session_state:
-    #     client = get_openai_client(openai_api_key, openai_endpoint)
-    #     st.session_state["openai_client"] = client
-    
-        # client = OpenAI(openai_api_key, openai_endpoint)
-    # client = get_openai_client(st.session_state.openai_key, st.session_state.endpoint)
-    
-        # st.error("Please enter valid Azure OpenAI API key and endpoint")
-
-    input_list = ["KSB", "Enter your KSB Description", "Additional instruction (Optional)"]
-    # job_role = st.text_input(input_list[2])
-    # experience = st.text_input(input_list[1])
-
-    ksb = st.selectbox(input_list[0], ['Knowledge', 'Skills', 'Behavior'])
-    ksb_desc = st.text_input(input_list[1])
-    extra_instruction = st.text_area(input_list[2])
-
-    # if not skills:
-    #     skills = "None"
-
-    if ksb_desc:
-        if st.button("Submit"):
-            print("#Abhi ",st.session_state.openai_key, st.session_state.endpoint)
-            with st.spinner("Let the magic happen ...."):
-                output = gpt_function(st.session_state.endpoint,st.session_state.openai_key, ksb=ksb, ksb_desc=ksb_desc, extra_instruction=extra_instruction)
-                st.markdown(output, unsafe_allow_html=True)
+# st.sidebar.title("Azure OpenAI API Key")
+# openai_api_key = st.sidebar.text_input("Enter your Azure OpenAI API Key", type="password")
 
 
-if __name__ == "__main__":
-    asyncio.run(main())
+# if 'openai_client' not in st.session_state:
+#     client = get_openai_client(openai_api_key, openai_endpoint)
+#     st.session_state["openai_client"] = client
+
+    # client = OpenAI(openai_api_key, openai_endpoint)
+# client = get_openai_client(st.session_state.openai_key, st.session_state.endpoint)
+
+    # st.error("Please enter valid Azure OpenAI API key and endpoint")
+
+input_list = ["KSB", "Enter your KSB Description", "Additional instruction (Optional)"]
+# job_role = st.text_input(input_list[2])
+# experience = st.text_input(input_list[1])
+
+ksb = st.selectbox(input_list[0], ['Knowledge', 'Skills', 'Behavior'])
+ksb_desc = st.text_input(input_list[1])
+extra_instruction = st.text_area(input_list[2])
+
+# if not skills:
+#     skills = "None"
+
+if ksb_desc:
+    if st.button("Submit"):
+        print("#Abhi ",st.session_state.openai_key, st.session_state.endpoint)
+        with st.spinner("Let the magic happen ...."):
+            output = gpt_function(st.session_state.endpoint,st.session_state.openai_key, ksb=ksb, ksb_desc=ksb_desc, extra_instruction=extra_instruction)
+            st.markdown(output, unsafe_allow_html=True)
+
+
+
