@@ -7,7 +7,7 @@ from openai import AzureOpenAI
 import asyncio
 ################ INITIALISATION ####################
 load_dotenv()
-_ = load_dotenv(find_dotenv())
+#_ = load_dotenv(find_dotenv())
 # api_key = os.environ.get('UKS_API_KEY')
 # api_url = os.environ.get('UKS_BASE_URL')
 
