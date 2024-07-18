@@ -8,7 +8,6 @@ import asyncio
 ################ INITIALISATION ####################
 load_dotenv()
 # api_key = os.environ.get('UKS_API_KEY')
-# api_url = os.environ.get('UKS_BASE_URL')
 
 # openai.log = False  # (set to "debug" if needed - and include quote marks)
 # openai.api_type = "azure"
